@@ -35,3 +35,32 @@ class Project:
         """
         return self._added_element
 
+
+class ProjectTracker:
+    def __init__(self, name, user):
+        self._name = name
+        self._user = user
+
+    def get_name(self):
+        """
+        gets the user created name of the Project Tracker
+        :return: String (project tracker name)
+        """
+        return self._name
+
+    def get_user(self):
+        """
+        gets the name of the user that controls the Project Tracker
+        :return: String (user name)
+        """
+        return self._user
+
+
+
+
+
+
+
+
+
+
