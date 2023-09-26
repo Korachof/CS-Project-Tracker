@@ -35,6 +35,19 @@ class Project:
         """
         return self._added_element
 
+    def write_to_text_file(self):
+        """
+        Writes the details of the Project to a text file
+        :return: Bool (True when successfully written)
+        """
+        with open("project_info.txt", "a") as f:
+            f.write(self.get_name())
+            f.write("\nLanguage: " + self.get_language() + "\n")
+            f.write("Description: " + self.get_description() + "\n")
+            f.write("Challenge Element: " + self.get_added_element() + "\n\n")
+            f.close()
+            return True
+
 
 class ProjectTracker:
     def __init__(self, name, user):
@@ -88,18 +101,10 @@ class ProjectTracker:
             if self._track_hash[key].get_language().upper() == language.upper():
                 print(key)
 
-    def write_to_text_file(self, project_object):
-        """
-        Writes the details of the Project to a text file
-        :param project_object: Object (Project Object)
-        :return: Bool (True when successfully written)
-        """
-        with open("project_info.txt", "a") as f:
-            f.write(project_object.get_name())
-            f.write("\nLanguage: " + project_object.get_language() + "\n")
-            f.write("Description: " + project_object.get_description() + "\n")
-            f.write("Challenge Element: " + project_object.get_added_element() + "\n\n")
-            f.close()
+
+
+
+
 
 
 
