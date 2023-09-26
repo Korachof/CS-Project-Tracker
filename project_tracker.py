@@ -77,6 +77,32 @@ class ProjectTracker:
         for key in self._track_hash:
             print(key + " (" + self._track_hash[key].get_language() + ")")
 
+    def print_specific_language_list(self, language):
+        """
+        Prints all the projects using the specified language in the Project Tracker
+        :param language: String (programming language)
+        :return: None
+        """
+        print("All projects in " + self.get_name() + " using " + language + ":")
+        for key in self._track_hash:
+            if self._track_hash[key].get_language().upper() == language.upper():
+                print(key)
+
+    def write_to_text_file(self, project_object):
+        """
+        Writes the details of the Project to a text file
+        :param project_object: Object (Project Object)
+        :return: Bool (True when successfully written)
+        """
+        with open("project_info.txt", "a") as f:
+            f.write(project_object.get_name())
+            f.write("\nLanguage: " + project_object.get_language() + "\n")
+            f.write("Description: " + project_object.get_description() + "\n")
+            f.write("Challenge Element: " + project_object.get_added_element() + "\n\n")
+            f.close()
+
+
+
 
 Joes_Tracker = ProjectTracker("Joe's Tracker", "Joe")
 
@@ -86,7 +112,10 @@ dino_collect = Project("Dinosaur Toy Collection", "C#", "Keeps Track of User Din
 Joes_Tracker.add_project(hello_world.get_name(), hello_world)
 Joes_Tracker.add_project(dino_collect.get_name(), dino_collect)
 
-Joes_Tracker.print_project_list()
+Joes_Tracker.print_specific_language_list("C#")
+
+Joes_Tracker.write_to_text_file(dino_collect)
+Joes_Tracker.write_to_text_file(hello_world)
 
 
 
