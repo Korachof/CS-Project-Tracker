@@ -40,6 +40,7 @@ class ProjectTracker:
     def __init__(self, name, user):
         self._name = name
         self._user = user
+        self._track_hash = {}
 
     def get_name(self):
         """
@@ -55,8 +56,37 @@ class ProjectTracker:
         """
         return self._user
 
+    def add_project(self, project_name, project_object):
+        """
+        adds a project to the track_hash dictionary, with the name of the project as key, and the project
+            object as the value
+        :return: Bool (True when it is successfully added, False otherwise)
+        """
+        if project_name not in self._track_hash:
+            self._track_hash[project_name] = project_object
+            return True
+
+        else:
+            return False
+
+    def print_project_list(self):
+        """
+        Prints the keys of the project list and the language in parentheses
+        :return: None
+        """
+        for key in self._track_hash:
+            print(key + " (" + self._track_hash[key].get_language() + ")")
 
 
+Joes_Tracker = ProjectTracker("Joe's Tracker", "Joe")
+
+hello_world = Project("Hello World", "Python", "Prints Hello World", "Print Statement")
+dino_collect = Project("Dinosaur Toy Collection", "C#", "Keeps Track of User Dino Toy Collection", "Arrays")
+
+Joes_Tracker.add_project(hello_world.get_name(), hello_world)
+Joes_Tracker.add_project(dino_collect.get_name(), dino_collect)
+
+Joes_Tracker.print_project_list()
 
 
 
