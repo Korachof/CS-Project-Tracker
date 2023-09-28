@@ -37,7 +37,7 @@ class Project:
 
     def write_to_text_file(self):
         """
-        Writes the details of the Project to a text file
+        Appends the details of the Project to a text file
         :return: Bool (True when successfully written)
         """
         with open("project_info.txt", "a") as f:
@@ -54,6 +54,7 @@ class ProjectTracker:
         self._name = name
         self._user = user
         self._track_hash = {}
+        self._languages_used = {}
 
     def get_name(self):
         """
@@ -84,7 +85,7 @@ class ProjectTracker:
 
     def print_project_list(self):
         """
-        Prints the keys of the project list and the language in parentheses
+        Prints the keys of the project list with the programming language used in parentheses
         :return: None
         """
         for key in self._track_hash:
@@ -101,26 +102,38 @@ class ProjectTracker:
             if self._track_hash[key].get_language().upper() == language.upper():
                 print(key)
 
+    def compile_languages_used(self):
+        """
+        Looks through the projects in the Project Tracker and compiles a list of all languages used
+        :return: Array (list of all languages used)
+        """
+        for key in self._track_hash:
+            if self._track_hash[key].get_language() not in self._languages_used:
+                self._languages_used[self._track_hash[key].get_language()] = 1
 
+            else:
+                self._languages_used[self._track_hash[key].get_language()] += 1
 
-
-
-
-
+            if self._languages_used[self._track_hash[key].get_language()] >= 20:
+                print("Awesome! ")
 
 
 Joes_Tracker = ProjectTracker("Joe's Tracker", "Joe")
 
 hello_world = Project("Hello World", "Python", "Prints Hello World", "Print Statement")
 dino_collect = Project("Dinosaur Toy Collection", "C#", "Keeps Track of User Dino Toy Collection", "Arrays")
+rock_paper_scissors= Project("Rock, Paper, Scissors", "Python", "Play Rock Paper Scissors", "Random Int")
 
 Joes_Tracker.add_project(hello_world.get_name(), hello_world)
 Joes_Tracker.add_project(dino_collect.get_name(), dino_collect)
+Joes_Tracker.add_project(rock_paper_scissors.get_name(), rock_paper_scissors)
 
-Joes_Tracker.print_specific_language_list("C#")
+Joes_Tracker.compile_languages_used()
 
-Joes_Tracker.write_to_text_file(dino_collect)
-Joes_Tracker.write_to_text_file(hello_world)
+print(Joes_Tracker._languages_used.values())
+
+dino_collect.write_to_text_file()
+hello_world.write_to_text_file()
 
 
 
