@@ -10,11 +10,13 @@ def main():
                    "B) Add to existing Project Tracker\n"
                    "C) Compile a list of all projects created\n"
                    "D) Compile a list of all programming languages used in the projects\n"
+                   "E) Exit Program"
                    "Example: If you would like to select the second option, simply type B\n")
 
     # Create a dictionary of options to simplify conditional for which option user selects
     choices = {"A": create_new_tracker.create_tracker, "B": add_existing_project.add_project,
-               "C": compile_projects.print_projects, "D": compile_languages.print_languages}
+               "C": compile_projects.print_projects, "D": compile_languages.print_languages,
+               "E": exit}
 
     if option.upper() in choices:
         choices[option.upper()]()
